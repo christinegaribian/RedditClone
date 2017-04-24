@@ -1,4 +1,5 @@
 class SubsController < ApplicationController
+  before_action :require_login
   before_action :require_user_owns_sub, only: [:edit, :update]
 
   def require_user_owns_sub

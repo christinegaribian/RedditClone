@@ -7,5 +7,18 @@
   <li> Author: <%= @post.author.username %> </li>
 </ul>
 
-<%= link_to 'Sub-Forum', sub_url(@post.sub) %>
+<% @post.subs.each do |sub| %>
+  <%= link_to sub.title, sub_url(sub) %>
+  <% end %>
+
+  <br>
+  <br>
 <%= link_to 'Edit Post', edit_post_url(@post) %>
+<%= link_to 'Add Comment', new_sub_post_comment_url, post: @post %>
+
+
+<h3>Comments:</h3>
+<% @post.comments.each do |comment| %>
+  <%= comment.author.username %>
+  <%= comment.content %>
+<% end %>

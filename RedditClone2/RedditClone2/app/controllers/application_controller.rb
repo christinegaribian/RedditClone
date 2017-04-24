@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :require_login, :require_moderator, :require_no_login
+  helper_method :current_user, :require_login, :require_moderator
 
   def require_no_login
     # redirect_to_root if current_user
-  end 
+  end
 
   def current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
+    redirect_to new_session_url unless current_user
   end
 
   def require_moderator

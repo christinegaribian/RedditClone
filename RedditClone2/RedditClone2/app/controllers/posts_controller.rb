@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user_is_author_of_post, only: [:edit, :update]
+  before_action :require_login
 
   def require_user_is_author_of_post
     return if current_user.posts.find_by(id: params[:id])
@@ -11,11 +12,11 @@ class PostsController < ApplicationController
   end
 
   def create
+
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    # @post.sub_id = 
     if @post.save
-      redirect_to sub_url(@post.sub)
+      redirect_to post_url(@post)
     else
       flash[:errors] = @post.errors.full_messages
       render :new
@@ -30,7 +31,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update_attributes(post_params)
-      redirect_to sub_url(@post.sub)
+      redirect_to post_url(@post)
     else
       flash[:errors] = @post.errors.full_messages
       render :edit
@@ -49,6 +50,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
 end

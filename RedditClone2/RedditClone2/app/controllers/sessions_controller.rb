@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :require_no_login, except: [:destroy]
+  # before_action :require_no_login, except: [:destroy]
 
   def new
     render :new
@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    # redirect to root
+    redirect_to new_session_url
   end
 end

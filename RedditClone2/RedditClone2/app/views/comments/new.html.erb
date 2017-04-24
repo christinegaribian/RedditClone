@@ -1,0 +1,9 @@
+Add a Comment!
+
+<form class="" action="/comments" method="post">
+  <%= token_tag nil  %>
+
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post_id %>">
+
+
+</form>
