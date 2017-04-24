@@ -1,0 +1,15 @@
+<h1>Edit a Sub-Forum!</h1>
+
+<form action="<%= sub_url(@sub) %>"  method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <%= token_tag nil %>
+  <label for="title">title
+    <input type="text" name="sub[title]" value="<%= @sub ? @sub.title : "" %>">
+  </label>
+
+  <label for="description">Description
+    <input type="text" name="sub[description]" value="<%= @sub ? @sub.description : "" %>">
+  </label>
+
+  <input type="submit" value="Edit Sub">
+</form>

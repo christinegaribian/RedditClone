@@ -1,0 +1,19 @@
+<h1>Edit Post!</h1>
+
+<form action="<%= sub_posts_url(@post) %>"  method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <%= token_tag nil %>
+  <label for="title">title
+    <input type="text" name="post[title]" value="<%= @post ? @post.title : "" %>">
+  </label>
+
+  <label for="content">Content
+    <input type="text" name="post[content]" value="<%= @post ? @post.content : "" %>">
+  </label>
+
+  <label for="url">URL
+    <input type="text" name="post[url]" value="<%= @post ? @post.url : "" %>">
+  </label>
+
+  <input type="submit" value="Update Post">
+</form>
