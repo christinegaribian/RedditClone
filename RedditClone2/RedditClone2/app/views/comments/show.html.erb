@@ -1,0 +1,10 @@
+<h1>Comments:</h1>
+<h2><%= @comment.author.username %> said: </h2>
+  <h3><%= @comment.content %></h3>
+  <%= render 'comment', comment: @comment %>
+<br>
+<br>
+
+
+<h3>Reply: </h3>
+<%= render "form", comment: @new_comment %>

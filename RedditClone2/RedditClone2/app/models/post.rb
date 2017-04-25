@@ -24,9 +24,10 @@ class Post < ApplicationRecord
   has_many :post_subs, dependent: :destroy, inverse_of: :post
   has_many :subs, through: :post_subs, source: :sub
   has_many :comments
-  
+
   belongs_to :author,
     primary_key: :id,
     foreign_key: :user_id,
     class_name: :User
+
 end
